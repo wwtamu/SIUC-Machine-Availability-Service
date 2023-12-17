@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIUCMachineAvailabilityService", "SIUC Machine Availability Service\SIUCMachineAvailabilityService.csproj", "{5ED3B897-B140-41B8-BF3B-7F35206A7AE9}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "AvailabilityModelingProject", "AvailabilityModelingProject\AvailabilityModelingProject.modelproj", "{AC37FEC3-3340-42D5-A5C1-E203757D78AD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://mobiledawg.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SIUC\u0020Machine\u0020Availability\u0020Service\\SIUCMachineAvailabilityService.csproj
+		SccProjectName1 = SIUC\u0020Machine\u0020Availability\u0020Service
+		SccLocalPath1 = SIUC\u0020Machine\u0020Availability\u0020Service
+		SccProjectUniqueName2 = AvailabilityModelingProject\\AvailabilityModelingProject.modelproj
+		SccProjectName2 = AvailabilityModelingProject
+		SccLocalPath2 = AvailabilityModelingProject
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ED3B897-B140-41B8-BF3B-7F35206A7AE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED3B897-B140-41B8-BF3B-7F35206A7AE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED3B897-B140-41B8-BF3B-7F35206A7AE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED3B897-B140-41B8-BF3B-7F35206A7AE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC37FEC3-3340-42D5-A5C1-E203757D78AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC37FEC3-3340-42D5-A5C1-E203757D78AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC37FEC3-3340-42D5-A5C1-E203757D78AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC37FEC3-3340-42D5-A5C1-E203757D78AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

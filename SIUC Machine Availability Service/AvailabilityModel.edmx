@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="machinesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="machinesModelStoreContainer">
+          <EntitySet Name="Availability" EntityType="machinesModel.Store.Availability" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Events" EntityType="machinesModel.Store.Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Labs" EntityType="machinesModel.Store.Labs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Machines" EntityType="machinesModel.Store.Machines" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Availabili__fmid__02FC7413" Association="machinesModel.Store.FK__Availabili__fmid__02FC7413">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="Availability" EntitySet="Availability" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__fmid__00200768" Association="machinesModel.Store.FK__Events__fmid__00200768">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Machines__flid__7D439ABD" Association="machinesModel.Store.FK__Machines__flid__7D439ABD">
+            <End Role="Labs" EntitySet="Labs" />
+            <End Role="Machines" EntitySet="Machines" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Availability">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="adate" Type="datetime" Nullable="false" />
+          <Property Name="fmid" Type="int" Nullable="false" />
+          <Property Name="mavailable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="edate" Type="datetime" Nullable="false" />
+          <Property Name="fmid" Type="int" Nullable="false" />
+          <Property Name="estring" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Labs">
+          <Key>
+            <PropertyRef Name="lid" />
+          </Key>
+          <Property Name="lid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="lbuilding" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="lfloor" Type="int" />
+          <Property Name="lroom" Type="varchar" MaxLength="20" />
+          <Property Name="lopen" Type="time" Nullable="false" />
+          <Property Name="lclose" Type="time" Nullable="false" />
+          <Property Name="lstat" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="lmdate" Type="datetime" Nullable="false" />
+          <Property Name="mcount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Machines">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="flid" Type="int" Nullable="false" />
+          <Property Name="mname" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="mmac" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="mlkip" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="mstat" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="mlabel" Type="varchar" MaxLength="10" />
+          <Property Name="mtype" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Availabili__fmid__02FC7413">
+          <End Role="Machines" Type="machinesModel.Store.Machines" Multiplicity="1" />
+          <End Role="Availability" Type="machinesModel.Store.Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="mid" />
+            </Principal>
+            <Dependent Role="Availability">
+              <PropertyRef Name="fmid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__fmid__00200768">
+          <End Role="Machines" Type="machinesModel.Store.Machines" Multiplicity="1" />
+          <End Role="Events" Type="machinesModel.Store.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="mid" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="fmid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Machines__flid__7D439ABD">
+          <End Role="Labs" Type="machinesModel.Store.Labs" Multiplicity="1" />
+          <End Role="Machines" Type="machinesModel.Store.Machines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Labs">
+              <PropertyRef Name="lid" />
+            </Principal>
+            <Dependent Role="Machines">
+              <PropertyRef Name="flid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="machinesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="machinesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Availabilities" EntityType="machinesModel.Availability" />
+          <EntitySet Name="Events" EntityType="machinesModel.Event" />
+          <EntitySet Name="Labs" EntityType="machinesModel.Lab" />
+          <EntitySet Name="Machines" EntityType="machinesModel.Machine" />
+          <AssociationSet Name="FK__Availabili__fmid__02FC7413" Association="machinesModel.FK__Availabili__fmid__02FC7413">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="Availability" EntitySet="Availabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__fmid__00200768" Association="machinesModel.FK__Events__fmid__00200768">
+            <End Role="Machines" EntitySet="Machines" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Machines__flid__7D439ABD" Association="machinesModel.FK__Machines__flid__7D439ABD">
+            <End Role="Labs" EntitySet="Labs" />
+            <End Role="Machines" EntitySet="Machines" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Availability">
+          <Key>
+            <PropertyRef Name="aid" />
+          </Key>
+          <Property Name="aid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="adate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fmid" Type="Int32" Nullable="false" />
+          <Property Name="mavailable" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Machine" Relationship="machinesModel.FK__Availabili__fmid__02FC7413" FromRole="Availability" ToRole="Machines" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="edate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fmid" Type="Int32" Nullable="false" />
+          <Property Name="estring" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Machine" Relationship="machinesModel.FK__Events__fmid__00200768" FromRole="Events" ToRole="Machines" />
+        </EntityType>
+        <EntityType Name="Lab">
+          <Key>
+            <PropertyRef Name="lid" />
+          </Key>
+          <Property Name="lid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="lbuilding" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="lfloor" Type="Int32" />
+          <Property Name="lroom" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="lopen" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="lclose" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="lstat" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="lmdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mcount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Machines" Relationship="machinesModel.FK__Machines__flid__7D439ABD" FromRole="Labs" ToRole="Machines" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="flid" Type="Int32" Nullable="false" />
+          <Property Name="mname" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="mmac" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="mlkip" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="mstat" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="mlabel" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="mtype" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Availabilities" Relationship="machinesModel.FK__Availabili__fmid__02FC7413" FromRole="Machines" ToRole="Availability" />
+          <NavigationProperty Name="Events" Relationship="machinesModel.FK__Events__fmid__00200768" FromRole="Machines" ToRole="Events" />
+          <NavigationProperty Name="Lab" Relationship="machinesModel.FK__Machines__flid__7D439ABD" FromRole="Machines" ToRole="Labs" />
+        </EntityType>
+        <Association Name="FK__Availabili__fmid__02FC7413">
+          <End Role="Machines" Type="machinesModel.Machine" Multiplicity="1" />
+          <End Role="Availability" Type="machinesModel.Availability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="mid" />
+            </Principal>
+            <Dependent Role="Availability">
+              <PropertyRef Name="fmid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__fmid__00200768">
+          <End Role="Machines" Type="machinesModel.Machine" Multiplicity="1" />
+          <End Role="Events" Type="machinesModel.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Machines">
+              <PropertyRef Name="mid" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="fmid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Machines__flid__7D439ABD">
+          <End Role="Labs" Type="machinesModel.Lab" Multiplicity="1" />
+          <End Role="Machines" Type="machinesModel.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Labs">
+              <PropertyRef Name="lid" />
+            </Principal>
+            <Dependent Role="Machines">
+              <PropertyRef Name="flid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="machinesModelStoreContainer" CdmEntityContainer="machinesEntities">
+          <EntitySetMapping Name="Availabilities">
+            <EntityTypeMapping TypeName="machinesModel.Availability">
+              <MappingFragment StoreEntitySet="Availability">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="adate" ColumnName="adate" />
+                <ScalarProperty Name="fmid" ColumnName="fmid" />
+                <ScalarProperty Name="mavailable" ColumnName="mavailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="machinesModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="eid" ColumnName="eid" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="fmid" ColumnName="fmid" />
+                <ScalarProperty Name="estring" ColumnName="estring" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Labs">
+            <EntityTypeMapping TypeName="machinesModel.Lab">
+              <MappingFragment StoreEntitySet="Labs">
+                <ScalarProperty Name="lid" ColumnName="lid" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="lbuilding" ColumnName="lbuilding" />
+                <ScalarProperty Name="lfloor" ColumnName="lfloor" />
+                <ScalarProperty Name="lroom" ColumnName="lroom" />
+                <ScalarProperty Name="lopen" ColumnName="lopen" />
+                <ScalarProperty Name="lclose" ColumnName="lclose" />
+                <ScalarProperty Name="lstat" ColumnName="lstat" />
+                <ScalarProperty Name="lmdate" ColumnName="lmdate" />
+                <ScalarProperty Name="mcount" ColumnName="mcount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machines">
+            <EntityTypeMapping TypeName="machinesModel.Machine">
+              <MappingFragment StoreEntitySet="Machines">
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="flid" ColumnName="flid" />
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="mmac" ColumnName="mmac" />
+                <ScalarProperty Name="mlkip" ColumnName="mlkip" />
+                <ScalarProperty Name="mstat" ColumnName="mstat" />
+                <ScalarProperty Name="mlabel" ColumnName="mlabel" />
+                <ScalarProperty Name="mtype" ColumnName="mtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
